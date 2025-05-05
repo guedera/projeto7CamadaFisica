@@ -5,7 +5,7 @@ from pydub import AudioSegment
 import os
 
 # Configurações
-duracao = 10  # segundos
+duracao = 20  # segundos
 frequencia_amostragem = 44100  # Hz
 arquivo_wav = "gravacao_temp.wav"
 arquivo_mp3 = "gravacao_final.mp3"
