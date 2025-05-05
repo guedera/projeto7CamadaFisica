@@ -28,7 +28,7 @@ def load_audio(file_path):
         audio, sr = librosa.load(file_path, sr=None)
         return audio, sr
     except Exception as e:
-        print(f"Error loading audio file: {e}")
+        print(f"Erro carregando o arquivo: {e}")
         return None, None
 
 def apply_filters(audio, filters):
@@ -74,30 +74,30 @@ def main():
     file_path = "Codes/direstraits.mp3"
     
     if not os.path.exists(file_path):
-        print(f"Error: File {file_path} not found!")
+        print(f"Erro: File {file_path} não encontrada!")
         return
     
-    print(f"Loading audio file: {file_path}")
+    print(f"Audio file: {file_path}")
     audio, sr = load_audio(file_path)
     if audio is None:
         return
     
-    print(f"Audio loaded. Sampling rate: {sr} Hz, Duration: {len(audio)/sr:.2f} seconds")
+    print(f"Sample rate: {sr} Hz, Duração: {len(audio)/sr:.2f} segundos")
     
     #inputs pras bandas
     gains = []
-    print("\nConfigure the equalizer gains for each band (-10dB to +10dB):")
+    print("\nGanhos do equalizador (-10dB to +10dB):\n")
     for band in bands:
         while True:
             try:
-                gain = float(input(f"Enter gain for {band} Hz band (-10 to +10 dB): "))
+                gain = float(input(f"Ganho de {band} Hz (-10 até +10 dB): "))
                 if -10 <= gain <= 10:
                     gains.append(gain)
                     break
                 else:
-                    print("Gain must be between -10 and +10 dB.")
+                    print("Tem que ser entre -10 e +10 dB.")
             except ValueError:
-                print("Please enter a valid number.")
+                print("Inválido.")
     
     #Cria filtros pras bandas
     filters = []
