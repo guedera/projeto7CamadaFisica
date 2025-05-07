@@ -58,7 +58,7 @@ def plot_bode_diagram(filters, fs):
     
     plt.figure(figsize=(10, 6))
     plt.semilogx(freqs, 20 * np.log10(np.abs(overall_response)))
-    plt.title('Overall Equalizer Response (Bode Diagram)')
+    plt.title('Resposta em Frequência do Equalizador')
     plt.xlabel('Frequency [Hz]')
     plt.ylabel('Gain [dB]')
     plt.grid(True, which="both", ls="-")
@@ -69,7 +69,7 @@ def plot_bode_diagram(filters, fs):
 
 def main():
     #12 bandas (freqs)
-    bands = [31.5, 63, 125, 250, 500, 1000, 2000, 4000, 8000, 10000, 16000, 20000]
+    bands = [20, 32, 64, 125, 250, 500,1000, 2000, 4000, 8000, 16000, 20000]
     
     file_path = "Codes/direstraits.mp3"
     
@@ -108,28 +108,28 @@ def main():
             filters.append((b, a))
     
     if not filters:
-        print("No filters applied (all gains set to 0).")
+        print("Todos os ganhos são zero. Nenhum filtro aplicado.")
         return
     
     #aplica o filtro
-    print("\nApplying filters...")
+    print("\nAplicando filtro...")
     filtered_audio = apply_filters(audio, filters)
     
     #Plota o Bode
-    print("\nGenerating Bode diagram...")
+    print("\nDiagrama Bode...")
     plot_bode_diagram(filters, sr)
     
     #Toca o audio original
-    print("\nPlaying original audio...")
+    print("\nTocando áudio original...")
     sd.play(audio, sr)
     sd.wait()
     
     #1 sec
-    print("\nWaiting 1 second...")
+    print("\nCarregando áudio filtado...")
     time.sleep(1)
     
     #Toca o audio filtrado
-    print("\nPlaying filtered audio...")
+    print("\nTocando áudio filtrado...")
     sd.play(filtered_audio, sr)
     sd.wait()
 
